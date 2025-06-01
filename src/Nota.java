@@ -58,10 +58,9 @@ public class Nota implements Impressao{
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         String dataFormatada = (dataLancamento != null) ? dataLancamento.format(formatter) : "data não informada";
 
-        return "Nota {" +
+        return disciplina+"{" +
                 "valor = " + valor +
                 ", dataLancamento = " + dataFormatada +
-                ", disciplina = " + (disciplina != null ? disciplina.getNome() : "sem disciplina") +
                 "}";
     }
 }

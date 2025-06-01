@@ -1,0 +1,56 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+package "Modelo" {
+  class Aluno {
+    - ra: Long
+    - nome: String
+    - matricula: Matricula
+    - boletins: List<Boletim>
+    + getBoletins(): List<Boletim>
+  }
+
+  class Matricula {
+    - turma: Turma
+    + getTurma(): Turma
+  }
+
+  class Turma {
+    - codigo: Long
+    - disciplinas: List<Disciplina>
+    + getDisciplinas(): List<Disciplina>
+    + atualizarCargaHorariaTotal(): void
+  }
+
+  class Disciplina {
+    - codigo: Long
+    - nome: String
+    - cargaHoraria: int
+  }
+
+  class Professor {
+    - rp: Long
+    - nome: String
+    - salario: double
+    + getNome(): String
+  }
+
+  class Boletim {
+    - ano: int
+    - notas: List<Nota>
+    + getNotas(): List<Nota>
+  }
+
+  class Nota {
+    - valor: double
+    - disciplina: Disciplina
+  }
+}
+
+Aluno "1" -- "1" Matricula
+Matricula "1" -- "1" Turma
+Turma "1" -- "*" Disciplina
+Aluno "1" -- "*" Boletim
+Boletim "1" -- "*" Nota
+Nota "1" -- "1" Disciplina
+@enduml
