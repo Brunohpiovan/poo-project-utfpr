@@ -75,8 +75,7 @@ public class Principal {
                                 break;
                             case 5:
                                 try {
-                                    Aluno aluno = notaService.atribuirNota(alunos);
-                                    alunos = alunoService.alterarAlunoNaLista(alunos,aluno);
+                                    alunoService.visualizarBoletim(alunos);
                                 }catch (RuntimeException e){
                                     System.out.println("Erro: " + e.getMessage());
                                 }
