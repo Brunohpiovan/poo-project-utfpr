@@ -15,7 +15,7 @@ public class DepartamentoService {
         return departamento;
     }
 
-    public void listarTurmasParcial(List<Departamento> departamentos) {
+    public void listarDepartamentos(List<Departamento> departamentos) {
         System.out.println("\n--- Lista de Departamentos ---");
         if (departamentos.isEmpty()) {
             System.out.println("Nenhum departamento cadastrado.");

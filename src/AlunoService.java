@@ -7,6 +7,7 @@ public class AlunoService {
     private GeradorCodigoLong geradorCodigoLong = new GeradorCodigoLong();
     private EnderecoService enderecoService = new EnderecoService();
     private TurmaService turmaService = new TurmaService();
+    private BoletimService boletimService = new BoletimService();
 
     public Aluno cadastrarAluno(List<Turma> turmas) {
         Aluno aluno = new Aluno();
@@ -75,7 +76,11 @@ public class AlunoService {
                 System.out.println("Código inválido. Por favor, tente novamente.");
             }
         }
-        turmaService.listarTurmasParcial(turmas);
+        try {
+            turmaService.listarTurmasParcial(turmas);
+        }catch (RuntimeException e){
+            System.out.println(e.getMessage());
+        }
         Turma turmaSelecionado = null;
         while (turmaSelecionado == null) {
             Long codigo = Long.parseLong(leitura.entDados("Informe o codigo da turma:"));
@@ -108,6 +113,27 @@ public class AlunoService {
             }
         }
         return alunos;
+    }
+    public void visualizarBoletim(List<Aluno> alunos){
+        if(alunos.isEmpty()){
+            throw new RuntimeException("Nao existem alunos cadastrado no sistema");
+        }
+        Aluno alunoSelecionado = null;
+        while (alunoSelecionado == null) {
+            Long codigo = Long.parseLong(leitura.entDados("Informe o RA do aluno que você deseja visualizar o boletim:"));
+
+            for (Aluno a : alunos) {
+                if (a.getRa().equals(codigo)) {
+                    alunoSelecionado = a;
+                    break;
+                }
+            }
+
+            if (alunoSelecionado == null) {
+                System.out.println("Código inválido. Por favor, tente novamente.");
+            }
+        }
+        boletimService.listarBoletim(alunoSelecionado.getBoletins());
     }
 
 }

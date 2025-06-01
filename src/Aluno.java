@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 //Bruno Henrique Chagas Piovan ra:2648776
 public class Aluno extends Pessoa{
@@ -10,7 +11,7 @@ public class Aluno extends Pessoa{
     // Reflexividade: um aluno possui uma matrícula
     private Matricula matricula;
     // Reflexividade: um aluno possui uma lista de boletins
-    private List<Boletim> boletins;
+    private List<Boletim> boletins = new ArrayList<>();
 
     public Aluno() {
     }

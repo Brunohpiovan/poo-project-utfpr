@@ -1,4 +1,5 @@
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 //Bruno Henrique Chagas Piovan ra:2648776
@@ -33,7 +34,9 @@ public class NotaService {
         }
         if(alunoSelecionado.getMatricula().getTurma()==null){
             throw new RuntimeException("Esse aluno nao esta cadastrado em nenhuma turma,portanto,nao pode ser atribuida notas ao mesmo");
-
+        }
+        if (alunoSelecionado.getBoletins() == null) {
+            alunoSelecionado.setBoletins(new ArrayList<>());
         }
         if(alunoSelecionado.getBoletins().isEmpty()){
             Boletim boletim = boletimService.cadastrarBoletim(alunoSelecionado);
@@ -85,6 +88,9 @@ public class NotaService {
 
     private Boletim dadosNota(Aluno aluno,Boletim boletim){
         List<Disciplina> disciplinas = aluno.getMatricula().getTurma().getDisciplinas();
+        if (disciplinas == null) {
+            disciplinas = new ArrayList<>();
+        }
         if(disciplinas.isEmpty()){
             throw new RuntimeException("Não há nenhuma disciplina cadastrada na turma "+aluno.getMatricula().getTurma().getNome()+" sistema,portando nao sera possivel prosseguir com a atribuicao de notas");
         }
@@ -109,6 +115,9 @@ public class NotaService {
         nota.setBoletim(boletim);
         nota.setValor(Double.parseDouble(leitura.entDados("Informe o valor da nota:")));
         nota.setDataLancamento(LocalDateTime.now());
+        if(boletim.getNotas() == null){
+            boletim.setNotas(new ArrayList<>());
+        }
         boletim.getNotas().add(nota);
         return boletim;
     }

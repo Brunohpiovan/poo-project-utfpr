@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 //Bruno Henrique Chagas Piovan ra:2648776
 public class Boletim implements Impressao{
@@ -7,7 +8,7 @@ public class Boletim implements Impressao{
     private Integer ano;
     // Reflexividade: um boletim pertence a um aluno
     private Aluno aluno;
-    private List<Nota> notas;
+    private List<Nota> notas = new ArrayList<>();
 
     public Boletim() {
     }
@@ -74,7 +75,8 @@ public class Boletim implements Impressao{
         }
 
         return "  Boletim {" +
-                "\n    semestre = " + semestre +
+                "\n    codigo = " + codigo +
+                ",\n    semestre = " + semestre +
                 ",\n    ano = " + ano +
                 // Evita loop recursivo imprimindo apenas o nome do aluno
                 ",\n    aluno = " + (aluno != null ? aluno.getNome() : "sem aluno") +

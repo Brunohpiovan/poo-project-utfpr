@@ -44,6 +44,7 @@ public class Principal {
                         System.out.println("2 - Listar Alunos");
                         System.out.println("3 - Setar Turma a aluno");
                         System.out.println("4 - Atribuir Nota a Alunos");
+                        System.out.println("5 - Visualizar Boletins");
                         System.out.println("0 - Voltar");
                         System.out.print("Escolha uma opção: ");
                         int opcaoAluno = Integer.parseInt(scanner.nextLine());
@@ -71,7 +72,14 @@ public class Principal {
                                 }catch (RuntimeException e){
                                     System.out.println("Erro: " + e.getMessage());
                                 }
-                                alunoService.listarAlunos(alunos);
+                                break;
+                            case 5:
+                                try {
+                                    Aluno aluno = notaService.atribuirNota(alunos);
+                                    alunos = alunoService.alterarAlunoNaLista(alunos,aluno);
+                                }catch (RuntimeException e){
+                                    System.out.println("Erro: " + e.getMessage());
+                                }
                                 break;
                             case 0:
                                 voltarAluno = true;
@@ -165,7 +173,11 @@ public class Principal {
                                 turmas.add(turmaService.criarTurma());
                                 break;
                             case 2:
-                                turmaService.listarTurmasParcial(turmas);
+                                try {
+                                    turmaService.listarTurmasParcial(turmas);
+                                }catch (RuntimeException e){
+                                    System.out.println(e.getMessage());
+                                }
                                 break;
                             case 3:
                                 try {

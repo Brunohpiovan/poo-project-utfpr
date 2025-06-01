@@ -18,7 +18,12 @@ public class MatriculaService {
         }
 
         System.out.println("\nDigite o código da turma que o aluno vai pertencer:");
-        turmaService.listarTurmasParcial(turmas);
+        try {
+            turmaService.listarTurmasParcial(turmas);
+        }catch (RuntimeException e){
+            System.out.println(e.getMessage());
+        }
+
 
         Turma turmaSelecionada = selecionarTurmaPorCodigo(turmas);
         matricula.setTurma(turmaSelecionada);

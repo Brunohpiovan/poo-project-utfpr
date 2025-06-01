@@ -22,7 +22,7 @@ public class TurmaService {
     public void listarTurmasParcial(List<Turma> turmas) {
         System.out.println("\n--- Lista de Turmas ---");
         if (turmas.isEmpty()) {
-            System.out.println("Nenhuma turma cadastrada.");
+            throw  new RuntimeException("Nenhuma turma cadastrada.");
         } else {
             for (Turma turma : turmas) {
                 System.out.println(turma.impDados());
@@ -37,7 +37,12 @@ public class TurmaService {
             System.out.println("Nao existem disciplinas ou turmas cadastradas");
             return null;
         }
-        listarTurmasParcial(turmas);
+        try{
+            listarTurmasParcial(turmas);
+        }catch (RuntimeException e){
+            System.out.println(e.getMessage());
+        }
+
         while (turmaSalvar == null) {
             Long codigoTurma = Long.parseLong(leitura.entDados("Informe o código da turma que você quer adicionar disciplinas:"));
 

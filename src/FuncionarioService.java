@@ -35,7 +35,7 @@ public class FuncionarioService {
         }
 
         System.out.println("\nDigite o código do departamento que o aluno vai pertencer:");
-        departamentoService.listarTurmasParcial(departamentos);
+        departamentoService.listarDepartamentos(departamentos);
 
         Departamento departamento = selecionarDepartamentoPorCodigo(departamentos);
         funcionario.setDepartamento(departamento);
