@@ -2,6 +2,7 @@ import java.util.List;
 //Bruno Henrique Chagas Piovan ra:2648776
 public class Boletim implements Impressao{
 
+    private Long codigo;
     private Integer semestre;
     private Integer ano;
     // Reflexividade: um boletim pertence a um aluno
@@ -11,11 +12,20 @@ public class Boletim implements Impressao{
     public Boletim() {
     }
 
-    public Boletim(Integer semestre, Integer ano, Aluno aluno, List<Nota> notas) {
+    public Boletim(Long codigo, Integer semestre, Integer ano, Aluno aluno, List<Nota> notas) {
+        this.codigo = codigo;
         this.semestre = semestre;
         this.ano = ano;
         this.aluno = aluno;
         this.notas = notas;
+    }
+
+    public Long getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(Long codigo) {
+        this.codigo = codigo;
     }
 
     public Integer getSemestre() {

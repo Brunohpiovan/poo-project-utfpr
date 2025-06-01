@@ -11,7 +11,7 @@ public class Principal {
     static ProfessorService professorService = new ProfessorService();
     static DisciplinaService disciplinaService = new DisciplinaService();
     static FuncionarioService funcionarioService = new FuncionarioService();
-    private NotaService notaService = new NotaService();
+    static NotaService notaService = new NotaService();
 
     public static void main(String[] args) {
         List<Aluno> alunos = new ArrayList<>();
@@ -59,13 +59,18 @@ public class Principal {
                                     TurmaAlunoDTO dto = alunoService.setarTurma(turmas,alunos);
                                     turmas = turmaService.alterarTurmaNaLista(turmas,dto.getTurma());
                                     alunos = alunoService.alterarAlunoNaLista(alunos,dto.getAluno());
-
                                 }catch (RuntimeException e){
                                     System.out.println("Erro: " + e.getMessage());
                                 }
 
                                 break;
                             case 4:
+                                try {
+                                    Aluno aluno = notaService.atribuirNota(alunos);
+                                    alunos = alunoService.alterarAlunoNaLista(alunos,aluno);
+                                }catch (RuntimeException e){
+                                    System.out.println("Erro: " + e.getMessage());
+                                }
                                 alunoService.listarAlunos(alunos);
                                 break;
                             case 0:

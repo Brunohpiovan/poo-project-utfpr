@@ -99,15 +99,6 @@ public class AlunoService {
         return dto;
     }
 
-    public List<Turma> alterarTurmaNaLista(List<Turma> turmas, Turma turma) {
-        for (int i = 0; i < turmas.size(); i++) {
-            if (turmas.get(i).getCodigo().equals(turma.getCodigo())) {
-                turmas.set(i, turma);
-                break;
-            }
-        }
-        return turmas;
-    }
 
     public List<Aluno> alterarAlunoNaLista(List<Aluno> alunos, Aluno aluno) {
         for (int i = 0; i < alunos.size(); i++) {
